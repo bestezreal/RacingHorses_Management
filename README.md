@@ -1,6 +1,6 @@
 # STRIDE — Hướng dẫn sử dụng bản giao diện RTMS
 
-STRIDE là bản mẫu giao diện tương tác cho **Racehorse Training & Management System**, phục vụ minh họa SRS của môn SWR302. Giao diện sử dụng tiếng Việt và có đủ **5 luồng nghiệp vụ, 5 vai trò người dùng**.
+STRIDE là bản mẫu giao diện tương tác cho **Racehorse Training & Management System**, phục vụ minh họa SRS. Giao diện sử dụng tiếng Việt và có đủ **5 luồng nghiệp vụ, 5 vai trò người dùng**.
 
 Đây là bản frontend chạy trên trình duyệt. Các biểu mẫu và quy tắc nghiệp vụ được mô phỏng bằng dữ liệu tại máy của bạn; chưa có máy chủ, cơ sở dữ liệu dùng chung hoặc xác thực người dùng thật.
 
@@ -24,7 +24,7 @@ Bản trên **Sites** mặc định giới hạn truy cập cho chủ sở hữu
 
 - **Chuyển vai trò:** dùng danh sách vai trò dưới tên người dùng ở góc trên bên phải. Các nút thao tác thay đổi theo vai trò.
 - **Chọn chủ ngựa:** khi đang ở vai **Chủ sở hữu**, dùng danh sách chủ ngựa ở thanh trên để so sánh hai phạm vi sở hữu.
-- **Điều hướng:** chọn chức năng tại thanh bên trái. Nút **Kịch bản demo** gần cuối thanh bên gợi ý cách thử năm luồng.
+- **Điều hướng:** chọn chức năng tại thanh bên trái. Tham khảo mục **4. Kịch bản thử đủ năm luồng** trong tài liệu này để thực hiện các tình huống minh họa.
 - **Thông báo:** biểu tượng chuông trên thanh trên mở thông báo liên quan đến vai trò và phạm vi hiện tại.
 - **Khôi phục:** biểu tượng mũi tên xoay ở cuối thanh bên có tên **Khôi phục dữ liệu demo**. Xác nhận để xóa các thay đổi của bản mẫu và trở lại dữ liệu ban đầu. Tệp tài liệu trên máy không bị ảnh hưởng.
 
@@ -143,7 +143,7 @@ Bản này giúp trình bày luồng màn hình, thao tác, quyền theo vai và
 - Không chuyển tiền, thanh toán, gửi đăng ký thật cho ban tổ chức hoặc xác thực bằng chứng với bên ngoài.
 - Không nên nhập hồ sơ y tế, chứng từ tài chính hoặc tài khoản thật vào bản demo.
 
-Nếu một thao tác bị chặn, hãy kiểm tra vai trò, trạng thái ngựa, khóa y tế, phiên bản đang duyệt và điều kiện lịch trước. Có thể mở **Kịch bản demo** để quay lại hướng dẫn hoặc **Khôi phục dữ liệu demo** để thử từ đầu.
+Nếu một thao tác bị chặn, hãy kiểm tra vai trò, trạng thái ngựa, khóa y tế, phiên bản đang duyệt và điều kiện lịch trước. Tham khảo mục **4. Kịch bản thử đủ năm luồng** để xem hướng dẫn hoặc chọn **Khôi phục dữ liệu demo** để thử từ đầu.
 
 
 ## Ảnh chụp ngựa
