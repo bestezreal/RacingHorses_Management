@@ -32,13 +32,17 @@ Ngày nghiệp vụ của demo được cố định là **26/10/2026** để c�
 
 ### Năm vai trò
 
-| Vai trò | Các việc nên thử |
-|---|---|
-| **Quản lý CLB** | Hồ sơ/sở hữu ngựa, tài khoản, danh mục, xác nhận thành tích, chi phí/tiền thưởng, báo cáo và nhật ký. |
-| **HLV trưởng** | Giáo án, lịch tập, mô phỏng chỉ số, đánh giá, khẩu phần nháp, đăng ký giải và kết quả. |
-| **Bác sĩ thú y** | Hồ sơ khám, vùng chấn thương, khóa/gỡ khóa bài nặng, lịch y tế và duyệt khẩu phần. |
-| **Nhân viên chăm sóc** | Xem việc được giao, hoàn thành chăm sóc, ghi lượng sử dụng, báo sự cố và đề xuất vật tư. |
-| **Chủ sở hữu** | Xem hồ sơ, sức khỏe, huấn luyện, thành tích và báo cáo của ngựa thuộc sở hữu. |
+| Vai trò | Tên hiển thị | Các việc nên thử |
+|---|---|---|
+| **Quản lý CLB** | Đăng Trình | Hồ sơ/sở hữu ngựa, tài khoản, danh mục, xác nhận thành tích, chi phí/tiền thưởng, báo cáo và nhật ký. |
+| **HLV trưởng** | Thanh Nhân | Giáo án, lịch tập, mô phỏng chỉ số, đánh giá, khẩu phần nháp, đăng ký giải và kết quả. |
+| **Bác sĩ thú y** | Trần An | Hồ sơ khám, vùng chấn thương, khóa/gỡ khóa bài nặng, lịch y tế và duyệt khẩu phần. |
+| **Nhân viên chăm sóc** | Nguyễn Phong | Xem việc được giao, hoàn thành chăm sóc, ghi lượng sử dụng, báo sự cố và đề xuất vật tư. |
+| **Chủ sở hữu** | Thầy Hoàng Minh | Xem hồ sơ, sức khỏe, huấn luyện, thành tích và báo cáo của ngựa thuộc sở hữu. |
+
+Tài khoản chủ sở hữu chính là **Thầy Hoàng Minh**. Tài khoản mẫu thứ hai **Trần Gia Bảo** được giữ để so sánh phạm vi sở hữu.
+
+Bản cập nhật tự đổi tên và ảnh mặc định trong dữ liệu trình duyệt cũ; các thao tác demo và ảnh tự tải lên được giữ lại.
 
 Chuyển vai là tiện ích trình diễn. Việc ẩn nút/kiểm tra quyền tại frontend không thay thế bảo mật máy chủ của một sản phẩm thực tế.
 
@@ -46,11 +50,11 @@ Chuyển vai là tiện ích trình diễn. Việc ẩn nút/kiểm tra quyền 
 
 | Ngựa | Tình huống ban đầu |
 |---|---|
-| **Aurora — EQ-001** | Đủ điều kiện sức khỏe; có lịch tập và kết quả October Classic đang chờ quản lý xác nhận. Thuộc chủ Nguyễn Minh Anh. |
+| **Aurora — EQ-001** | Đủ điều kiện sức khỏe; có lịch tập và kết quả October Classic đang chờ quản lý xác nhận. Thuộc chủ Thầy Hoàng Minh. |
 | **Golden Arrow — EQ-002** | Cần theo dõi; khẩu phần bữa sáng đang chờ bác sĩ duyệt; có báo cáo ăn chậm. Thuộc chủ Trần Gia Bảo. |
-| **Silver Storm — EQ-003** | Chấn thương; có khóa bài tập nặng và buổi tập chờ điều chỉnh. Thuộc chủ Nguyễn Minh Anh. |
+| **Silver Storm — EQ-003** | Chấn thương; có khóa bài tập nặng và buổi tập chờ điều chỉnh. Thuộc chủ Thầy Hoàng Minh. |
 | **Midnight — EQ-004** | Có thành tích đã xác nhận và tiền thưởng đã xác nhận. Phù hợp để thử sửa thành tích rồi đối chiếu lại khoản thưởng. Thuộc chủ Trần Gia Bảo. |
-| **Desert Rose — EQ-005** | Có buổi khởi động/phục hồi và hồ sơ đăng ký giải sắp tới. Thuộc chủ Nguyễn Minh Anh. |
+| **Desert Rose — EQ-005** | Có buổi khởi động/phục hồi và hồ sơ đăng ký giải sắp tới. Thuộc chủ Thầy Hoàng Minh. |
 | **Thunderbolt — EQ-006** | Chưa có hoạt động đang mở trong dữ liệu ban đầu; phù hợp để thử ngừng quản lý thành công. Thuộc chủ Trần Gia Bảo. |
 
 Tất cả tên CLB, giải, tài khoản, số đo, chứng từ và số tiền là dữ liệu minh họa.
@@ -140,3 +144,8 @@ Bản này giúp trình bày luồng màn hình, thao tác, quyền theo vai và
 - Không nên nhập hồ sơ y tế, chứng từ tài chính hoặc tài khoản thật vào bản demo.
 
 Nếu một thao tác bị chặn, hãy kiểm tra vai trò, trạng thái ngựa, khóa y tế, phiên bản đang duyệt và điều kiện lịch trước. Có thể mở **Kịch bản demo** để quay lại hướng dẫn hoặc **Khôi phục dữ liệu demo** để thử từ đầu.
+
+
+## Ảnh chụp ngựa
+
+Ảnh chụp thật được đóng gói trong `assets/horses/`, có thể xem khi ngoại tuyến. Đây là ảnh đại diện cho hồ sơ demo, không xác nhận danh tính, giống hay đặc điểm của ngựa trong dữ liệu mẫu. Nguồn ảnh, tác giả và giấy phép được ghi trong `assets/horses/CREDITS.md`.

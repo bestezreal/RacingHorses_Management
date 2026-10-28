@@ -10,9 +10,10 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const addDays=(n)=>{const d=new Date(today()+'T12:00:00+07:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);};
 const date=v=>v?new Date(String(v).length===10?v+'T12:00:00':v).toLocaleDateString('vi-VN'):'—';
 const money=(v,c='VND')=>v===null||v===undefined||v===''?'Chưa ghi nhận':new Intl.NumberFormat('vi-VN',{style:'currency',currency:c,maximumFractionDigits:c==='VND'?0:2}).format(Number(v));
-function horseArt(color='#9e6946',bg='#e9e8dc',variant=0){return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"><rect width="400" height="250" fill="${bg}"/><circle cx="${330-variant*15}" cy="60" r="48" fill="#fff" opacity=".45"/><path d="M0 197q90-50 190-4t210-15v72H0z" fill="#71846d" opacity=".2"/><path d="m86 147 24-36 68-8 35-29 5-35 13 15 18-8-4 24 27 43-10 11-28-20-11 39-17 19-2 60h-13l-7-58-51-5-24 66H94l14-75z" fill="${color}"/><path d="m115 113-20 8-31 41 16 7 29-32M217 71l-20 21-17 15 24 13 10-28z" fill="${color}"/><path d="m203 83 9-25 6-19 2 37-18 29-21 2z" fill="#302d26"/><circle cx="240" cy="82" r="3" fill="#20251f"/><path d="m228 95 27 16" stroke="#e6d6b0" stroke-width="4"/><path d="m91 226h22m77 0h22m-84-74 28 74h13l-11-73" fill="${color}"/><path d="M25 232h350" stroke="#4c6c53" stroke-width="2" opacity=".4"/></svg>`);}
+const horsePhotoNames=['aurora','golden-arrow','silver-storm','midnight','desert-rose','thunderbolt'];
+function horsePhoto(variant=0){const n=Number(variant);const i=Number.isFinite(n)?Math.abs(Math.trunc(n))%horsePhotoNames.length:0;return 'assets/horses/'+horsePhotoNames[i]+'.jpg';}
 function seed(){
- const owners=[{id:'owner-1',role:'owner',name:'Nguyễn Minh Anh',email:'minhanh@stride.demo',active:true},{id:'owner-2',role:'owner',name:'Trần Gia Bảo',email:'giabao@stride.demo',active:true}];
+ const owners=[{id:'owner-1',role:'owner',name:'Thầy Hoàng Minh',email:'hoangminh@stride.demo',active:true},{id:'owner-2',role:'owner',name:'Trần Gia Bảo',email:'giabao@stride.demo',active:true}];
  const horses=[
  ['h1','EQ-001','Aurora','female','2022-03-18','Nâu hạt dẻ','owner-1','A-01','Eligible',485,'Northern Light','Golden Dawn','#a66c46','#e7e6d9'],
  ['h2','EQ-002','Golden Arrow','male','2021-05-02','Nâu vàng','owner-2','A-02','Monitoring',512,'Solar Wind','Amber Sky','#bc8750','#eee7d7'],
@@ -20,9 +21,9 @@ function seed(){
  ['h4','EQ-004','Midnight','male','2020-09-10','Đen','owner-2','B-01','Eligible',525,'Night King','Velvet Rose','#3e403d','#e1e3df'],
  ['h5','EQ-005','Desert Rose','female','2023-02-21','Nâu đỏ','owner-1','B-02','Eligible',462,'Desert Sun','Wild Flower','#92513c','#eaddd3'],
  ['h6','EQ-006','Thunderbolt','male','2021-11-08','Nâu sẫm','owner-2','B-03','Eligible',508,'Thunder Road','Belle Star','#665039','#e5e6d9']
- ].map((h,i)=>({id:h[0],code:h[1],name:h[2],breed:'Thoroughbred',sex:h[3],birthDate:h[4],color:h[5],ownerId:h[6],ownerName:owners.find(o=>o.id===h[6]).name,ownershipFrom:'2026-01-01',stable:h[7],health:h[8],weight:h[9],ready:h[8]==='Eligible',active:true,notes:i===0?'Tiến bộ tốt ở cự ly 1.600 m. Theo dõi phục hồi sau mỗi buổi tập.':'Hồ sơ minh họa phục vụ demo.',sire:h[10],dam:h[11],photo:horseArt(h[12],h[13],i)}));
- return {version:1,role:'manager',ownerId:'owner-1',signedIn:true,view:'dashboard',
- users:[{id:'manager-1',role:'manager',name:'Nguyễn Khánh',email:'khanh@stride.demo',active:true},{id:'trainer-1',role:'trainer',name:'Lê Hoàng',email:'hoang@stride.demo',active:true},{id:'vet-1',role:'vet',name:'Trần An',email:'an@stride.demo',active:true},{id:'groom-1',role:'groom',name:'Phạm Hải',email:'hai@stride.demo',active:true},...owners],horses,
+ ].map((h,i)=>({id:h[0],code:h[1],name:h[2],breed:'Thoroughbred',sex:h[3],birthDate:h[4],color:h[5],ownerId:h[6],ownerName:owners.find(o=>o.id===h[6]).name,ownershipFrom:'2026-01-01',stable:h[7],health:h[8],weight:h[9],ready:h[8]==='Eligible',active:true,notes:i===0?'Tiến bộ tốt ở cự ly 1.600 m. Theo dõi phục hồi sau mỗi buổi tập.':'Hồ sơ minh họa phục vụ demo.',sire:h[10],dam:h[11],photo:horsePhoto(i)}));
+ return {version:2,role:'manager',ownerId:'owner-1',signedIn:true,view:'dashboard',
+ users:[{id:'manager-1',role:'manager',name:'Đăng Trình',email:'trinh@stride.demo',active:true},{id:'trainer-1',role:'trainer',name:'Thanh Nhân',email:'nhan@stride.demo',active:true},{id:'vet-1',role:'vet',name:'Trần An',email:'an@stride.demo',active:true},{id:'groom-1',role:'groom',name:'Nguyễn Phong',email:'phong@stride.demo',active:true},...owners],horses,
  plans:[{id:'p1',horseId:'h1',title:'Sức bền trước giải Autumn Cup',stage:'Giai đoạn 2 · Tăng sức bền',distance:1600,load:'moderate',surface:'Đường cát',from:today(),to:addDays(14),note:'Luân phiên tập sức bền và phục hồi.'},{id:'p2',horseId:'h3',title:'Phục hồi sau chấn thương',stage:'Giai đoạn 1 · Hồi phục',distance:600,load:'light',surface:'Đường cỏ',from:today(),to:addDays(7),note:'Theo chỉ dẫn của bác sĩ thú y.'}],
  sessions:[{id:'s1',horseId:'h1',planId:'p1',title:'Sức bền 1.600 m',date:today(),start:'06:00',end:'07:00',assignedTo:'groom-1',load:'moderate',distance:1600,surface:'Đường cát',status:'Completed',assessment:'Phục hồi tốt, bước chạy ổn định.',notes:'Tăng tốc cuối chặng tốt.',metrics:{heartRate:116,speed:42},actualStart:today()+'T06:00:00+07:00',actualEnd:today()+'T07:00:00+07:00'},
  {id:'s2',horseId:'h4',title:'Chạy tốc độ 1.200 m',date:today(),start:'08:00',end:'09:00',assignedTo:'groom-1',load:'heavy',distance:1200,surface:'Đường cát',status:'Scheduled',assessment:'',notes:''},
@@ -31,15 +32,15 @@ function seed(){
  medicalRecords:[{id:'m1',horseId:'h3',date:'2026-10-25',vetName:'Trần An',diagnosis:'Theo dõi chấn thương chân trước trái',treatment:'Nghỉ bài tập nặng, theo dõi hồi phục và tái khám.',medicine:'Ghi nhận điều trị minh họa',quantity:1,status:'Open',region:'Chân trước trái',notes:'Dữ liệu giả lập, không phải chỉ dẫn y tế.'}],
  locks:[{id:'l1',horseId:'h3',active:true,reason:'Chờ đánh giá phục hồi chân trước trái; tạm ngừng bài tập nặng.',createdAt:'2026-10-25T09:00:00+07:00'}],
  medicalSchedules:[{id:'ms1',horseId:'h1',type:'Tiêm phòng định kỳ',date:addDays(2),status:'Pending'},{id:'ms2',horseId:'h3',type:'Tái khám phục hồi',date:today(),status:'Pending'},{id:'ms3',horseId:'h4',type:'Kiểm tra móng',date:addDays(1),status:'Pending'}],
- diets:[{id:'d1',horseId:'h1',version:1,meal:'morning',from:today(),to:addDays(30),items:[{name:'Yến mạch',quantity:2.5,unit:'kg'},{name:'Cỏ khô',quantity:4,unit:'kg'}],status:'Approved',author:'Lê Hoàng',reviewer:'Trần An',createdAt:'2026-10-25T08:00:00+07:00'},
- {id:'d2',horseId:'h2',version:1,meal:'morning',from:today(),to:addDays(14),items:[{name:'Yến mạch',quantity:2,unit:'kg'},{name:'Cỏ khô',quantity:5,unit:'kg'}],status:'Pending review',author:'Lê Hoàng',reviewer:'',createdAt:today()+'T07:00:00+07:00'},
- {id:'d3',horseId:'h3',version:1,meal:'morning',from:today(),to:addDays(14),items:[{name:'Cỏ khô',quantity:5,unit:'kg'},{name:'Yến mạch',quantity:1.5,unit:'kg'}],status:'Approved',author:'Lê Hoàng',reviewer:'Trần An',createdAt:'2026-10-25T08:00:00+07:00'}],
+ diets:[{id:'d1',horseId:'h1',version:1,meal:'morning',from:today(),to:addDays(30),items:[{name:'Yến mạch',quantity:2.5,unit:'kg'},{name:'Cỏ khô',quantity:4,unit:'kg'}],status:'Approved',author:'Thanh Nhân',reviewer:'Trần An',createdAt:'2026-10-25T08:00:00+07:00'},
+ {id:'d2',horseId:'h2',version:1,meal:'morning',from:today(),to:addDays(14),items:[{name:'Yến mạch',quantity:2,unit:'kg'},{name:'Cỏ khô',quantity:5,unit:'kg'}],status:'Pending review',author:'Thanh Nhân',reviewer:'',createdAt:today()+'T07:00:00+07:00'},
+ {id:'d3',horseId:'h3',version:1,meal:'morning',from:today(),to:addDays(14),items:[{name:'Cỏ khô',quantity:5,unit:'kg'},{name:'Yến mạch',quantity:1.5,unit:'kg'}],status:'Approved',author:'Thanh Nhân',reviewer:'Trần An',createdAt:'2026-10-25T08:00:00+07:00'}],
  tasks:[{id:'t1',horseId:'h1',title:'Cho ăn bữa sáng',type:'feeding',date:today(),time:'05:30',assignee:'groom-1',status:'Completed',dietId:'d1',completedAt:today()+'T05:35:00+07:00',note:'Ăn hết khẩu phần.'},{id:'t2',horseId:'h2',title:'Cho ăn bữa sáng',type:'feeding',date:today(),time:'07:00',assignee:'groom-1',status:'Pending',dietId:'d2'},
  {id:'t3',horseId:'h3',title:'Theo dõi và vệ sinh chuồng',type:'cleaning',date:today(),time:'08:30',assignee:'groom-1',status:'Pending'},
  {id:'t4',horseId:'h1',title:'Tắm rửa sau buổi tập',type:'bathing',date:today(),time:'09:00',assignee:'groom-1',status:'Pending'},
  {id:'t5',horseId:'h4',title:'Vệ sinh chuồng B-01',type:'cleaning',date:today(),time:'10:00',assignee:'groom-1',status:'Pending'},
  {id:'t6',horseId:'h3',title:'Cho ăn bữa sáng',type:'feeding',date:today(),time:'07:30',assignee:'groom-1',status:'Pending',dietId:'d3'}],
- incidents:[{id:'i1',horseId:'h2',date:today(),description:'Ăn chậm hơn thường lệ, cần theo dõi trong ngày.',image:null,status:'Submitted',reporter:'Phạm Hải'}],
+ incidents:[{id:'i1',horseId:'h2',date:today(),description:'Ăn chậm hơn thường lệ, cần theo dõi trong ngày.',image:null,status:'Submitted',reporter:'Nguyễn Phong'}],
  supplies:[{id:'sp1',name:'Yến mạch',type:'Feed',unit:'kg',area:'Khu A',active:true},{id:'sp2',name:'Cỏ khô',type:'Feed',unit:'kg',area:'Khu A',active:true},{id:'sp3',name:'Vitamin tổng hợp',type:'Medicine',unit:'hộp',area:'Phòng y tế',active:true},{id:'sp4',name:'Dụng cụ chăm sóc móng',type:'Equipment',unit:'bộ',area:'Khu B',active:true}],usage:[{id:'us1',horseId:'h1',itemName:'Yến mạch',quantity:2.5,unit:'kg',sourceId:'t1',date:today()}],requests:[{id:'rq1',itemName:'Cỏ khô',quantity:50,unit:'kg',reason:'Bổ sung cho lịch chăm sóc tuần tới.',status:'Submitted',date:today()}],
  races:[{id:'r1',name:'Autumn Championship',event:'Open · 1.600 m',date:addDays(8),location:'Trường đua Green Valley',distance:1600,conditions:'Ngựa đang quản lý, đủ điều kiện sức khỏe, không bị khóa huấn luyện.'},{id:'r2',name:'October Classic',event:'Open · 1.200 m',date:'2026-10-24',location:'Trường đua Green Valley',distance:1200,conditions:'Đủ điều kiện tham dự.'}],
  registrations:[{id:'reg1',horseId:'h1',raceId:'r2',status:'Accepted',evidence:'Xác nhận BTC October Classic.pdf',createdAt:'2026-10-20'},{id:'reg2',horseId:'h4',raceId:'r2',status:'Accepted',evidence:'Xác nhận BTC October Classic.pdf',createdAt:'2026-10-20'},{id:'reg3',horseId:'h5',raceId:'r1',status:'Submitted',evidence:'Hồ sơ đăng ký Desert Rose.pdf',createdAt:today()}],
@@ -50,10 +51,44 @@ function seed(){
  {id:'e3',horseId:null,category:'Vận hành',title:'Bảo dưỡng khu chuồng trại',date:'2026-10-22',amount:6500000,currency:'VND',status:'Confirmed',evidence:'Phiếu chi CLB 018.pdf'},
  {id:'e4',horseId:'h2',category:'Dinh dưỡng',title:'Thức ăn tuần 44',date:today(),amount:1600000,currency:'VND',status:'Draft',evidence:''}],
  prizes:[{id:'pr1',resultId:'rs2',horseId:'h4',registrationId:'reg2',version:1,amount:25000000,currency:'VND',date:'2026-10-25',status:'Confirmed',evidence:'Thông báo thưởng October Classic.pdf',noAward:false}],
- audit:[{id:'a1',time:'2026-10-26T08:10:00+07:00',role:'trainer',actor:'Lê Hoàng',action:'Gửi kết quả Aurora để xác nhận'},{id:'a2',time:'2026-10-25T15:30:00+07:00',role:'vet',actor:'Trần An',action:'Đặt khóa bài tập nặng cho Silver Storm'},{id:'a3',time:'2026-10-25T14:20:00+07:00',role:'manager',actor:'Nguyễn Khánh',action:'Xác nhận tiền thưởng October Classic'}],
+ audit:[{id:'a1',time:'2026-10-26T08:10:00+07:00',role:'trainer',actor:'Thanh Nhân',action:'Gửi kết quả Aurora để xác nhận'},{id:'a2',time:'2026-10-25T15:30:00+07:00',role:'vet',actor:'Trần An',action:'Đặt khóa bài tập nặng cho Silver Storm'},{id:'a3',time:'2026-10-25T14:20:00+07:00',role:'manager',actor:'Đăng Trình',action:'Xác nhận tiền thưởng October Classic'}],
  notifications:[{id:'n1',title:'Aurora có kết quả chờ xác nhận',body:'Đối chiếu bằng chứng chính thức từ October Classic.',view:'racing',roles:['manager'],horseId:'h1',read:false,createdAt:now()},{id:'n2',title:'Khẩu phần Golden Arrow chờ duyệt',body:'Phiên bản 1 · Bữa sáng.',view:'care',roles:['vet'],horseId:'h2',read:false,createdAt:now()},{id:'n3',title:'Silver Storm đang khóa bài tập nặng',body:'Bác sĩ yêu cầu theo dõi phục hồi.',view:'medical',roles:['trainer','manager','owner'],horseId:'h3',read:false,createdAt:now()}]};
 }
-let state;try{const saved=JSON.parse(localStorage.getItem(KEY));state=saved?.version===1?saved:seed();}catch{state=seed();}
+function migrateV1(saved){
+ if(!saved||saved.version!==1)return saved;
+ const aliases={'Nguyễn Khánh':'Đăng Trình','Lê Hoàng':'Thanh Nhân','Phạm Hải':'Nguyễn Phong','Nguyễn Minh Anh':'Thầy Hoàng Minh','khanh@stride.demo':'trinh@stride.demo','hoang@stride.demo':'nhan@stride.demo','hai@stride.demo':'phong@stride.demo','minhanh@stride.demo':'hoangminh@stride.demo'};
+ const identityFields=new Set(['actor','actorName','ownerName','ownerEmail','author','authorName','reviewer','reviewerName','reporter','reporterName','vetName','trainerName','groomName','managerName','receivingVet','receivingVetName','createdBy','updatedBy','confirmedBy','approvedBy','reviewedBy','enteredBy','releasedBy','handledBy','recordedBy','submittedBy','reportedBy','requestedBy','requesterName','assigneeName','fullName','displayName','email','setBy','placedBy']);
+ function rename(node,identityRecord=false){
+  if(Array.isArray(node)){node.forEach(value=>rename(value,identityRecord));return;}
+  if(!node||typeof node!=='object')return;
+  Object.keys(node).forEach(key=>{
+   const value=node[key];
+   if(typeof value==='string'&&(identityFields.has(key)||(key==='name'&&identityRecord))&&Object.prototype.hasOwnProperty.call(aliases,value))node[key]=aliases[value];
+   else if(value&&typeof value==='object')rename(value,key==='users'||key==='owners');
+  });
+ }
+ rename(saved);
+ const photoIndex={h1:0,h2:1,h3:2,h4:3,h5:4,h6:5};
+ (Array.isArray(saved.horses)?saved.horses:[]).forEach((horse,index)=>{
+  if(typeof horse.photo!=='string'||!/^data:image\/svg\+xml;charset=UTF-8,/i.test(horse.photo))return;
+  let svg;try{svg=decodeURIComponent(horse.photo.slice(horse.photo.indexOf(',')+1));}catch{return;}
+  const legacyDefault=svg.includes('viewBox="0 0 400 250"')&&svg.includes('m86 147 24-36 68-8')&&svg.includes('M25 232h350');
+  if(legacyDefault)horse.photo=horsePhoto(Object.prototype.hasOwnProperty.call(photoIndex,horse.id)?photoIndex[horse.id]:index);
+ });
+ saved.version=2;
+ return saved;
+}
+let state;
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY));
+ if(saved&&(saved.version===1||saved.version===2)){
+  state=saved;
+  if(saved.version===1){
+   migrateV1(state);
+   try{localStorage.setItem(KEY,JSON.stringify(state));}catch{/* Keep migrated progress in memory if storage is unavailable. */}
+  }
+ }else state=seed();
+}catch{state=seed();}
 const role=()=>state.role;
 const allowed=(...roles)=>roles.includes(role());
 const can=p=>user()?.active!==false&&(state.rolePermissions?.[role()]||permissions[role()]||[]).includes(p);
@@ -76,5 +111,6 @@ function empty(ic,title,description,action=''){return `<div class="empty-state">
 function modal(title,html,onSubmit,opts={}){const dlg=document.getElementById('app-modal');dlg.classList.toggle('wide',!!opts.wide);document.getElementById('modal-title').textContent=title;document.getElementById('modal-subtitle').textContent=opts.subtitle||'';document.getElementById('modal-body').innerHTML=html;document.getElementById('modal-footer').innerHTML=`<button type="button" class="btn btn-secondary" data-action="ui:close">${onSubmit?'Hủy':'Đóng'}</button>${onSubmit?`<button type="submit" class="btn btn-primary">${esc(opts.submitText||'Lưu thay đổi')}</button>`:''}`;document.getElementById('modal-form').onsubmit=async e=>{e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;try{const res=await onSubmit(Object.fromEntries(new FormData(form)),form);if(res!==false)closeModal();}catch(err){toast(err.message||'Chưa thể lưu. Vui lòng kiểm tra lại dữ liệu.','error');}};if(!dlg.open)dlg.showModal();setTimeout(()=>dlg.querySelector('input,select,textarea,button')?.focus(),30);}
 function closeModal(){document.getElementById('app-modal')?.close();}
 async function fileMeta(file){if(!file)return null;let preview='';if(file.type.startsWith('image/')&&file.size<=1000000){preview=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file);});}return{name:file.name,type:file.type,size:file.size,preview};}
-window.RTMS={getState:()=>state,role,roleNames,permissions,user,can,guard,allowed,mutate,save,render,navigate,notify,horse:id=>state.horses.find(h=>h.id===id),visibleHorses,hasHorse,isOwnerFinanceAllowed:(id,at)=>role()!=='owner'||(hasHorse(id)&&String(at||'9999')>=(state.horses.find(h=>h.id===id)?.ownershipFrom||'0000')),locked:id=>state.locks.find(l=>l.horseId===id&&l.active)||false,pages:{},actions:{},filters:{},ui:{icon,badge,btn,empty,toast,modal,closeModal},utils:{esc,uid,date,money,today,now,addDays,fileMeta,horseArt},labels,reset:()=>{state=seed();save();render();},setRole:r=>{if(!permissions[r])return;state.role=r;state.signedIn=true;save();render();},setOwner:id=>{state.ownerId=id;save();render();},logout:()=>{state.signedIn=false;save();render();}};
+window.RTMS={getState:()=>state,role,roleNames,permissions,user,can,guard,allowed,mutate,save,render,navigate,notify,horse:id=>state.horses.find(h=>h.id===id),visibleHorses,hasHorse,isOwnerFinanceAllowed:(id,at)=>role()!=='owner'||(hasHorse(id)&&String(at||'9999')>=(state.horses.find(h=>h.id===id)?.ownershipFrom||'0000')),locked:id=>state.locks.find(l=>l.horseId===id&&l.active)||false,pages:{},actions:{},filters:{},ui:{icon,badge,btn,empty,toast,modal,closeModal},utils:{esc,uid,date,money,today,now,addDays,fileMeta,horsePhoto},labels,reset:()=>{state=seed();save();render();},setRole:r=>{if(!permissions[r])return;state.role=r;state.signedIn=true;save();render();},setOwner:id=>{state.ownerId=id;save();render();},logout:()=>{state.signedIn=false;save();render();}};
 })();
+
